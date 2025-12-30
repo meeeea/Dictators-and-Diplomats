@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿void Main() {
+    PerlinMap mapsGen = new(1600, 900, 5, 5);
+
+    Draw.BMPDraw(mapsGen.ToBitMap());
+}
+
+
+
+Main();
