@@ -3,11 +3,14 @@
         "name" : "Default Map Test",
         "MapWidth" : 1600,
         "mapHeight" : 900,
-        "ConinentMap" : {
-            "frequencyx" : 3,
-            "frequencyy" : 3,
-            "amplitude" : 10
-        }
+        "Maps" : [
+            {
+                "name" : "continentMap",
+                "frequencyx" : 3,
+                "frequencyy" : 3,
+                "amplitude" : 10
+            }
+        ]
     }
 
 
