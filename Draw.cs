@@ -2,7 +2,7 @@ using System.Text;
 
 class Draw
 {
-    public static bool BMPDraw(NoiseMap<Color> noiseMap, string fileName = "output")
+    public static bool BMPDraw(Bitmap noiseMap, string fileName = "output")
     {
 //        try
 //        {
@@ -132,12 +132,58 @@ class Draw
         }
     }
 
-    public class Bitmap : NoiseMap<Color>
+    public class Bitmap
     {
-        public Bitmap(int width, int height) : base(width, height)
+
+        public static implicit operator Bitmap(NoiseMap noiseMap)
         {
             
-            
+            Draw.Bitmap Bitmap = new Draw.Bitmap(noiseMap.width, noiseMap.height);
+
+        float scale = 255 / (noiseMap.maxValue - noiseMap.minValue);
+
+        int index = 0;
+        for (int i = 0; i < noiseMap.width; i++)
+        {
+            for (int k = 0; k < noiseMap.height; k++)
+            {
+                Bitmap[i, k] = new Draw.Color((byte) (int) Math.Floor((noiseMap[i, k] - noiseMap.minValue)  * scale));
+                index++;
+            }
+        }
+
+
+        return Bitmap;
+        }
+
+
+        private int _width;
+        private int _height;
+
+        public int width => _width;
+        public int height => _height;
+
+        private Color[][] Map;
+
+        public Color this[int x, int y] 
+        {
+            get => Map[x][y];
+            set => Map[x][y] = value;
+        }
+
+        public Bitmap(int width, int height) {
+            _width = width;
+            _height = height;
+
+            Map = new Color[width][];
+            for (int i = 0; i < width; i++)
+            {
+                Map[i] = new Color[height];
+                for (int k = 0; k < height; k++)
+                {
+                    Map[i][k] = new Color();
+                }
+            }
         }
     }
 }

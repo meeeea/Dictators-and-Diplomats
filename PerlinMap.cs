@@ -1,5 +1,3 @@
-using System.Drawing;
-
 class PerlinMap
 {
     private int _width;
@@ -81,7 +79,7 @@ class PerlinMap
     private void findMinMaxValues()
     {
         minValue = perlinMap[0];
-        maxValue = perlinMap[1];
+        maxValue = perlinMap[0];
 
         for (int i = 1; i < mapsize; i++)
         {
