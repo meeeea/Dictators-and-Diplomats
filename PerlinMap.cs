@@ -1,3 +1,5 @@
+using System.Drawing;
+
 class PerlinMap
 {
     private int _width;
@@ -17,6 +19,26 @@ class PerlinMap
 
     public float maxValue;
     public float minValue;
+
+    public static implicit operator Draw.Bitmap(PerlinMap Map)
+    {
+        Draw.Bitmap Bitmap = new Draw.Bitmap(Map.width, Map.height);
+
+        float scale = 255 / (Map.maxValue - Map.minValue);
+
+        int index = 0;
+        for (int i = 0; i < Map.width; i++)
+        {
+            for (int k = 0; k < Map.height; k++)
+            {
+                Bitmap[i, k] = new Draw.Color((byte) (int) Math.Floor((Map.perlinMap[index] - Map.minValue)  * scale));
+                index++;
+            }
+        }
+
+
+        return Bitmap;
+    }
 
 
     public PerlinMap(int Width, int Height, float freqx = (float) 10, float freqy = (float) 10, float amplitude = (float) 1)
@@ -72,27 +94,5 @@ class PerlinMap
                 minValue = perlinMap[i];
             }
         }
-    }
-
-
-    public Draw.BitMap<Draw.Color> ToBitMap()
-    {
-        Draw.BitMap<Draw.Color> bitMap = new Draw.BitMap<Draw.Color>(width, height);
-
-        float scale = 255 / (maxValue - minValue);
-
-        int index = 0;
-        for (int i = 0; i < width; i++)
-        {
-            for (int k = 0; k < height; k++)
-            {
-                //bitMap[i, k] = new Draw.Color((byte) i, 0, (byte) k);
-                bitMap[i, k] = new Draw.Color((byte) (int) Math.Floor((perlinMap[index] - minValue)  * scale));
-                index++;
-            }
-        }
-
-
-        return bitMap;
     }
 }

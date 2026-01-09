@@ -2,14 +2,14 @@ using System.Text;
 
 class Draw
 {
-    public static bool BMPDraw(BitMap<Color> bitMap, string fileName = "output")
+    public static bool BMPDraw(NoiseMap<Color> noiseMap, string fileName = "output")
     {
 //        try
 //        {
             using (FileStream fs = File.Create($"./Pics/{fileName}.BMP"))
             {
                 byte[] fileLen = BitConverter.GetBytes(
-                    54 + bitMap.height * (3 * bitMap.width + (4 - ( 3 * bitMap.width % 4))));
+                    54 + noiseMap.height * (3 * noiseMap.width + (4 - ( 3 * noiseMap.width % 4))));
 
                 // Begin File Header
 
@@ -28,9 +28,9 @@ class Draw
                 // size of BID Header
                 fs.Write([40, 0, 0, 0]);
                 // Width of bitmap
-                fs.Write(BitConverter.GetBytes(bitMap.width));
+                fs.Write(BitConverter.GetBytes(noiseMap.width));
                 // Height of bitmap
-                fs.Write(BitConverter.GetBytes(bitMap.height));
+                fs.Write(BitConverter.GetBytes(noiseMap.height));
                 // Must be this, IDK
                 fs.Write([1, 0]);
                 // Pixel Quality
@@ -48,13 +48,13 @@ class Draw
 
 
                 // pixel map
-                int buffer = 4 - (3 * bitMap.width % 4);
+                int buffer = 4 - (3 * noiseMap.width % 4);
 
-                for (int i = 0; i < bitMap.height; i++)
+                for (int i = 0; i < noiseMap.height; i++)
                 {
-                    for (int k = 0; k < bitMap.width; k++)
+                    for (int k = 0; k < noiseMap.width; k++)
                     {
-                        fs.Write(bitMap[k, i].RGB());                        
+                        fs.Write(noiseMap[k, i].RGB());                        
                     }
                     if (buffer != 4)
                     {
@@ -132,36 +132,12 @@ class Draw
         }
     }
 
-    public class BitMap<T> 
-    where T : new()
+    public class Bitmap : NoiseMap<Color>
     {
-        private int _width;
-        private int _height;
-        public int width => _width;
-        public int height => _height;
-        private T[][] pixels;
-
-        public T this[int x, int y] 
+        public Bitmap(int width, int height) : base(width, height)
         {
-            get => pixels[x][y];
-            set => pixels[x][y] = value;
+            
+            
         }
-
-        public BitMap(int width, int height) {
-            _width = width;
-            _height = height;
-
-            pixels = new T[width][];
-
-            for (int i = 0; i < width; i++)
-            {
-                pixels[i] = new T[height];
-                for (int k = 0; k < height; k++)
-                {
-                    pixels[i][k] = new T();
-                }
-            }
-        }
-
     }
 }
