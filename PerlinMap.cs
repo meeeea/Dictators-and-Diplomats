@@ -10,6 +10,7 @@ class PerlinMap
     private int mapsize;
 
     private float[] perlinMap;
+    public float this[int i] => perlinMap[i];
 
     private float xFreq;
     private float yFreq;
