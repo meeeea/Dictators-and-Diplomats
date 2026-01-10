@@ -1,9 +1,9 @@
 [
     {
         "name" : "Default Map Test",
-        "MapWidth" : 1600,
+        "mapWidth" : 1600,
         "mapHeight" : 900,
-        "Maps" : [
+        "maps" : [
             {
                 "name" : "continentMap",
                 "frequencyx" : 3,
