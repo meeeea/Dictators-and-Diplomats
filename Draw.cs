@@ -135,7 +135,7 @@ class Draw
     public class Bitmap
     {
 
-        public static implicit operator Bitmap(NoiseMap noiseMap)
+        public static implicit operator Bitmap(MapSet.NoiseMap noiseMap)
         {
             
             Draw.Bitmap Bitmap = new Draw.Bitmap(noiseMap.width, noiseMap.height);
