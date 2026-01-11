@@ -74,6 +74,7 @@ class PerlinMap
             (int) new Random().NextInt64()
         );
 
+        
         findMinMaxValues();
     }
 

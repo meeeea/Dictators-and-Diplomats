@@ -6,8 +6,8 @@
         "maps" : [
             {
                 "name" : "continentMap",
-                "frequencyx" : 3,
-                "frequencyy" : 3,
+                "frequencyX" : 5,
+                "frequencyY" : 5,
                 "amplitude" : 10
             }
         ]

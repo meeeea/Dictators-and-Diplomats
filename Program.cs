@@ -2,13 +2,11 @@
 
 void Main() {
     SettingsLoader.LoadSettings("GenSettings");
-    
-    MapSet mapSet;
+
     try
     {
-        mapSet = new MapSet(SettingsLoader.settingsList?[0]);
-        Console.WriteLine(mapSet);
-        
+        MapSet mapSet = new MapSet(SettingsLoader.settingsList?[0]);
+        Draw.BMPDraw(mapSet[0]);
     }
     catch (NullReferenceException e)
     {

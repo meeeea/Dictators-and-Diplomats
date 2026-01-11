@@ -24,8 +24,8 @@ public class SettingsLoader
         public class NoiseMapSettings
         {
             public string name { get; set; } = "Missing";
-            public float freqx { get; set; }
-            public float freqy { get; set; }
+            public float frequencyX { get; set; }
+            public float frequencyY { get; set; }
             public int amplitude { get; set; }
 
 

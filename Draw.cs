@@ -135,26 +135,7 @@ class Draw
     public class Bitmap
     {
 
-        public static implicit operator Bitmap(MapSet.NoiseMap noiseMap)
-        {
-            
-            Draw.Bitmap Bitmap = new Draw.Bitmap(noiseMap.width, noiseMap.height);
-
-        float scale = 255 / (noiseMap.maxValue - noiseMap.minValue);
-
-        int index = 0;
-        for (int i = 0; i < noiseMap.width; i++)
-        {
-            for (int k = 0; k < noiseMap.height; k++)
-            {
-                Bitmap[i, k] = new Draw.Color((byte) (int) Math.Floor((noiseMap[i, k] - noiseMap.minValue)  * scale));
-                index++;
-            }
-        }
-
-
-        return Bitmap;
-        }
+        
 
 
         private int _width;
